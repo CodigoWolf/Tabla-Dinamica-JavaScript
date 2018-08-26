@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Crud JS</title>
+</head>
+<body>
+	<div>
+		<input type="button" id="agregar" name="agregar" value="Agregar">
+	</div>
+	<table id="tblUsuarios" border="1">
+		<thead>
+			<th>#</th>
+			<th>Nombre</th>
+			<th>Usuario</th>
+			<th>Activo</th>
+			<th>Acciones</th>
+		</thead>
+		<tbody>
+			
+			
+		</tbody>
+	</table>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script>
+
+	$(function(){
+		Agregar();
+	})
+
+	var correlativo = 0;
+
+	function Agregar(){		
+		$("#agregar").on("click", function(){
+			
+			var tabla = $('#tblUsuarios tbody');
+			var hijos = tabla[0].children.length;
+			
+			correlativo++;
+			if(hijos > 0){
+				var fila = tabla.find("tr:last");
+				var filaNueva = fila.clone();
+				filaNueva.find("input.datos").val("");
+				filaNueva.find("input.numero").val(correlativo);
+				fila.after(filaNueva);
+			}else{
+				
+				tabla.html(`<tr>
+								<td><input type="text" class="numero" value="${correlativo}"></td>
+								<td><input type="text" class="datos"></td>
+								<td><input type="text" class="datos"></td>
+								<td><input type="text" class="datos"></td>
+								<td><input type="button" class="eliminar" value="eliminar" onclick="Eliminar(this);" ></td>
+							</tr>`);
+				
+			}	
+
+		});		
+	}
+
+	function Eliminar(valor){
+			var indice = parseInt( $(valor).closest('tr').prop("rowIndex") );//indice de la fila eliminada
+			$(valor).closest('tr').remove();
+			ActualizarCorrelativo(indice);	
+	}
+
+	function ActualizarCorrelativo(indice){
+		var tabla = $('#tblUsuarios tbody');
+		var fila = tabla[0].children;
+		var i = indice - 1;
+		correlativo = fila.length;//Actualiza el correlativo con el último número
+
+		while(i < fila.length ){
+			var celda = fila[i].children[0];
+			var input = celda.children[0].value = indice++;
+			i++;
+		}
+	}
+
+
+	
+
+	</script>
+</body>
+</html>
