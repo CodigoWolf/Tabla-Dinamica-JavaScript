@@ -1,0 +1,67 @@
+html, body{
+	padding: 0;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	border-sizing: border-box;
+}
+
+table{
+	background-color: #fff;
+	text-align: left;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th{
+	padding: 20px;
+}
+
+table, th,tr,td{
+	border: #473E3F solid 1px;
+}
+
+thead{
+	background-color: #473E3F;
+	border-bottom: #473E3F solid 1px;
+	color:white;
+	
+}
+
+tr:nth-child(even){
+	background-color: #90DC9E;
+}
+
+input{
+	background-color: inherit;
+}
+
+input[type=text]{
+	font-size: 16px;
+	height: 25px;
+	width: 100%;
+}
+
+.datos , .numero{
+	border: none;
+}
+
+.btn{
+	background: #fff;
+	width: 70px;
+	padding: 8px;
+	cursor: pointer;
+}
+
+.success{
+	background-color: #90DC9E;
+	color: black;
+}
+
+.danger{
+	background-color: #c94c4c;
+	color: white;
+}
+
+.input-sm{
+	width: 10px;
+}

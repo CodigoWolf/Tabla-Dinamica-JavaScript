@@ -4,24 +4,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Crud JS</title>
+	<link rel="stylesheet" href="main.css">
 </head>
 <body>
 	<div>
-		<input type="button" id="agregar" name="agregar" value="Agregar">
+		<input type="button" class="btn success" id="agregar" name="agregar" value="Agregar">
 	</div>
-	<table id="tblUsuarios" border="1">
+	<br>
+	<div>
+	<table id="tblUsuarios">
 		<thead>
-			<th>#</th>
+			<th class="input-sm">#</th>
 			<th>Nombre</th>
 			<th>Usuario</th>
-			<th>Activo</th>
-			<th>Acciones</th>
+			<th class="input-sm">Activo</th>
+			<th class="input-sm">Acciones</th>
 		</thead>
 		<tbody>
 			
 			
 		</tbody>
 	</table>
+	</div>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script>
 
@@ -47,11 +51,11 @@
 			}else{
 				
 				tabla.html(`<tr>
-								<td><input type="text" class="numero" value="${correlativo}"></td>
+								<td><input type="text" class="numero input-sm" value="${correlativo}"></td>
 								<td><input type="text" class="datos"></td>
 								<td><input type="text" class="datos"></td>
-								<td><input type="text" class="datos"></td>
-								<td><input type="button" class="eliminar" value="eliminar" onclick="Eliminar(this);" ></td>
+								<td><input type="text" class="datos input-sm"></td>
+								<td><input type="button" class="btn danger eliminar" value="eliminar" onclick="Eliminar(this);" ></td>
 							</tr>`);
 				
 			}	
