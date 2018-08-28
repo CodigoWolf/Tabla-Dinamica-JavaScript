@@ -1,8 +1,31 @@
+*{
+	font-family: 'Titillium Web', sans-serif;
+}
+
 html, body{
 	padding: 0;
 	margin: 0;
-	font-family: Arial, Helvetica, sans-serif;
 	border-sizing: border-box;
+	background-color: #F2F1F1;	
+}
+
+header,h1{
+	margin: 0 auto;
+	width: 100%;
+	background-color: #C94C4C;
+	padding: 0;
+}
+
+h1{
+	color: white;
+	text-align: center;
+	padding: 10px;
+}
+
+.container{
+	margin: 0 auto;
+	padding: 20px 0 0 0;
+	width: 70%;
 }
 
 table{
@@ -13,22 +36,24 @@ table{
 }
 
 th{
-	padding: 20px;
+	padding: 10px;
+	font-size: 13px;
 }
 
-table, th,tr,td{
-	border: #473E3F solid 1px;
+th,tr,td{
+
+	border-bottom: #848484 solid 1px;
+	/*border-right: #848484 solid 1px;*/
 }
 
 thead{
-	background-color: #473E3F;
+	background-color: #3773B5;
 	border-bottom: #473E3F solid 1px;
-	color:white;
-	
+	color:white;	
 }
 
-tr:nth-child(even){
-	background-color: #90DC9E;
+tr > td{
+	padding: 10px;
 }
 
 input{
@@ -36,9 +61,15 @@ input{
 }
 
 input[type=text]{
-	font-size: 16px;
+	
 	height: 25px;
 	width: 100%;
+	outline: none;
+}
+
+input[type=button]{
+	outline: none;
+	border: none;
 }
 
 .datos , .numero{
@@ -50,16 +81,26 @@ input[type=text]{
 	width: 70px;
 	padding: 8px;
 	cursor: pointer;
+	border-radius: 3px;
 }
 
 .success{
-	background-color: #90DC9E;
-	color: black;
+	background-color: #3FBF3F;
+	color: white;
 }
 
 .danger{
 	background-color: #c94c4c;
 	color: white;
+	width: 100%;
+}
+
+.success:hover{
+	background-color: #50C750;
+}
+
+.danger:hover{
+	background-color: #D25A5A;
 }
 
 .input-sm{

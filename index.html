@@ -3,35 +3,39 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Crud JS</title>
+	<title>Tabla Detalle JS</title>
 	<link rel="stylesheet" href="main.css">
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 </head>
 <body>
-	<div>
+	
+	<header>
+			<h1>Código Wolf</h1>
+	</header>
+
+	<div class="container">
 		<input type="button" class="btn success" id="agregar" name="agregar" value="Agregar">
 	</div>
-	<br>
-	<div>
-	<table id="tblUsuarios">
-		<thead>
-			<th class="input-sm">#</th>
-			<th>Nombre</th>
-			<th>Usuario</th>
-			<th class="input-sm">Activo</th>
-			<th class="input-sm">Acciones</th>
-		</thead>
-		<tbody>
-			
-			
-		</tbody>
-	</table>
+	
+	<div class="container">
+		<table id="tblUsuarios">
+			<thead>
+				<th class="input-sm">#</th>
+				<th>Nombre</th>
+				<th>Usuario</th>
+				<th class="input-sm">Activo</th>
+				<th class="input-sm">Acciones</th>
+			</thead>
+			<tbody>				
+			</tbody>
+		</table>
 	</div>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script>
 
 	$(function(){
 		Agregar();
-	})
+	});
 
 	var correlativo = 0;
 
@@ -42,24 +46,23 @@
 			var hijos = tabla[0].children.length;
 			
 			correlativo++;
-			if(hijos > 0){
+			if( hijos > 0 ){
 				var fila = tabla.find("tr:last");
 				var filaNueva = fila.clone();
 				filaNueva.find("input.datos").val("");
 				filaNueva.find("input.numero").val(correlativo);
-				fila.after(filaNueva);
-			}else{
-				
+				fila.after(filaNueva);				
+			}else{				
 				tabla.html(`<tr>
 								<td><input type="text" class="numero input-sm" value="${correlativo}"></td>
 								<td><input type="text" class="datos"></td>
 								<td><input type="text" class="datos"></td>
 								<td><input type="text" class="datos input-sm"></td>
-								<td><input type="button" class="btn danger eliminar" value="eliminar" onclick="Eliminar(this);" ></td>
-							</tr>`);
-				
+								<td><input type="button" class="btn danger eliminar" value="Eliminar" onclick="Eliminar(this);" ></td>
+							</tr>`);			
 			}	
 
+			AplicarFocus();
 		});		
 	}
 
@@ -82,8 +85,12 @@
 		}
 	}
 
+	function AplicarFocus(){
+		var contenido = $( "tr:nth-child(1) td:nth-child(2)" ).find("input.datos").val();
 
-	
+		if( contenido == "" )
+			$( "tr:nth-child(1) td:nth-child(2)" ).find("input.datos").focus();
+	}
 
 	</script>
 </body>
