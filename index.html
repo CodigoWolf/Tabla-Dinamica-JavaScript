@@ -15,6 +15,7 @@
 
 	<div class="container">
 		<input type="button" class="btn success" id="agregar" name="agregar" value="Agregar">
+		<input type="button" class="btn danger" id="eliminar" name="eliminar" value="Eliminar">
 	</div>
 	
 	<div class="container">
@@ -24,7 +25,7 @@
 				<th>Nombre</th>
 				<th>Usuario</th>
 				<th class="input-sm">Activo</th>
-				<th class="input-sm">Acciones</th>
+				<!--<th class="input-sm">Acciones</th>-->
 			</thead>
 			<tbody>				
 			</tbody>
@@ -35,9 +36,11 @@
 
 	$(function(){
 		Agregar();
+		EliminarSuperior();
 	});
 
 	var correlativo = 0;
+	var fila = "";
 
 	function Agregar(){		
 		$("#agregar").on("click", function(){
@@ -45,6 +48,9 @@
 			var tabla = $('#tblUsuarios tbody');
 			var hijos = tabla[0].children.length;
 			
+			//$("#tblUsuarios tbody tr").css("background","white");
+			$("#tblUsuarios tbody tr").removeClass("seleccionado");
+
 			correlativo++;
 			if( hijos > 0 ){
 				var fila = tabla.find("tr:last");
@@ -58,18 +64,37 @@
 								<td><input type="text" class="datos"></td>
 								<td><input type="text" class="datos"></td>
 								<td><input type="text" class="datos input-sm"></td>
-								<td><input type="button" class="btn danger eliminar" value="Eliminar" onclick="Eliminar(this);" ></td>
-							</tr>`);			
+							</tr>`);		
+							/*<td><input type="button" class="btn danger eliminar" value="Eliminar" onclick="Eliminar(this);" ></td>*/	
 			}	
 
 			AplicarFocus();
+			SeleccionarFila();
+
 		});		
 	}
 
 	function Eliminar(valor){
+
 			var indice = parseInt( $(valor).closest('tr').prop("rowIndex") );//indice de la fila eliminada
 			$(valor).closest('tr').remove();
 			ActualizarCorrelativo(indice);	
+	}
+
+	function EliminarSuperior(){
+
+		$("#eliminar").on("click", function(e){
+			e.preventDefault();
+			
+			var indice = fila.rowIndex;
+
+			if( indice == -1 ){
+				alert("Debe Seleccionar una fila para eliminar.");
+				return;
+			}
+			fila.remove();
+			ActualizarCorrelativo(indice);	
+		});			
 	}
 
 	function ActualizarCorrelativo(indice){
@@ -90,6 +115,23 @@
 
 		if( contenido == "" )
 			$( "tr:nth-child(1) td:nth-child(2)" ).find("input.datos").focus();
+	}
+
+	function SeleccionarFila(){
+
+		$('#tblUsuarios tbody tr').on("click", function(){
+			//$("#tblUsuarios tbody tr").css("background","white");
+			//$(this).css("background","rgba(0,0,0,0.1)");
+			$("#tblUsuarios tbody tr").removeClass("seleccionado");
+			$(this).addClass("seleccionado");
+
+			var data = $(this).children().children()[1].value;
+			console.log(data);
+
+			fila = $(this)[0];//almacenamos el "tr"
+
+		});
+
 	}
 
 	</script>

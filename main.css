@@ -56,6 +56,7 @@ tr > td{
 	padding: 10px;
 }
 
+
 input{
 	background-color: inherit;
 }
@@ -92,7 +93,6 @@ input[type=button]{
 .danger{
 	background-color: #c94c4c;
 	color: white;
-	width: 100%;
 }
 
 .success:hover{
@@ -105,4 +105,8 @@ input[type=button]{
 
 .input-sm{
 	width: 10px;
+}
+
+.seleccionado{
+	background: rgba(0,0,0,0.1);
 }
