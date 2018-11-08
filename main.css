@@ -95,6 +95,11 @@ input[type=button]{
 	color: white;
 }
 
+.primary{
+	background-color: #325AF4;
+	color: white;
+}
+
 .success:hover{
 	background-color: #50C750;
 }

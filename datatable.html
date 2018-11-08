@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Tabla Detalle JS</title>
 	<link rel="stylesheet" href="main.css">
-	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+	<!--<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">-->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css">
 </head>
 <body>
 	
@@ -23,65 +24,51 @@
 	<div class="container">
 		<table id="tblUsuarios">
 			<thead>
-				<th class="input-sm">#</th>
+				<th>#</th>
 				<th>Nombre</th>
 				<th>Usuario</th>
-				<th class="input-sm">Activo</th>
-				<!--<th class="input-sm">Acciones</th>-->
+				<th>Activo</th>
 			</thead>
-			<tbody>				
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Geovanny</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Petter</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Jorge</td>
+					<td></td>
+					<td></td>
+				</tr>
+
 			</tbody>
 		</table>
 	</div>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
 	<script>
 
+
 	$(function(){
-		Agregar();
+		
 		EliminarSuperior();
+		$("#tblUsuarios").DataTable({
+			//aqui viene toda la logica
+		});
+		SeleccionarFila();
 	});
 
 	var correlativo = 0;
 	var fila = "";
-
-	function Agregar(){		
-		$("#agregar").on("click", function(){
-			
-			var tabla = $('#tblUsuarios tbody');
-			var hijos = tabla[0].children.length;
-			
-			//$("#tblUsuarios tbody tr").css("background","white");
-			$("#tblUsuarios tbody tr").removeClass("seleccionado");
-
-			correlativo++;
-			if( hijos > 0 ){
-				var fila = tabla.find("tr:last");
-				var filaNueva = fila.clone();
-				filaNueva.find("input.datos").val("");
-				filaNueva.find("input.numero").val(correlativo);
-				fila.after(filaNueva);				
-			}else{				
-				tabla.html(`<tr>
-								<td><input type="text" class="numero input-sm" value="${correlativo}"></td>
-								<td><input type="text" class="datos"></td>
-								<td><input type="text" class="datos"></td>
-								<td><input type="text" class="datos input-sm"></td>
-							</tr>`);		
-							/*<td><input type="button" class="btn danger eliminar" value="Eliminar" onclick="Eliminar(this);" ></td>*/	
-			}	
-
-			AplicarFocus();
-			SeleccionarFila();
-
-		});		
-	}
-
-	function Eliminar(valor){
-
-			var indice = parseInt( $(valor).closest('tr').prop("rowIndex") );//indice de la fila eliminada
-			$(valor).closest('tr').remove();
-			ActualizarCorrelativo(indice);	
-	}
 
 	function EliminarSuperior(){
 
@@ -107,7 +94,7 @@
 
 		while(i < fila.length ){
 			var celda = fila[i].children[0];
-			var input = celda.children[0].value = indice++;
+			//var input = celda.children[0].value = indice++;
 			i++;
 		}
 	}
@@ -122,15 +109,14 @@
 	function SeleccionarFila(){
 
 		$('#tblUsuarios tbody tr').on("click", function(){
-			//$("#tblUsuarios tbody tr").css("background","white");
-			//$(this).css("background","rgba(0,0,0,0.1)");
 			$("#tblUsuarios tbody tr").removeClass("seleccionado");
 			$(this).addClass("seleccionado");
 
-			var data = $(this).children().children()[1].value;
-			console.log(data);
+			//var data = $(this).children().children()[1].value;
+			//console.log(data);
 
 			fila = $(this)[0];//almacenamos el "tr"
+			console.log(fila);
 
 		});
 
